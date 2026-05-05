@@ -43,7 +43,7 @@ export const Route = createFileRoute("/insights/$slug")({
 });
 
 function InsightDetail() {
-  const { item } = Route.useLoaderData();
+  const { item } = Route.useLoaderData() as { item: (typeof import("@/content/insights").insights)[number] };
   return (
     <>
       <Section className="pt-12 md:pt-20 pb-10">

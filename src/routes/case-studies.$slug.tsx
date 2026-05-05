@@ -43,7 +43,7 @@ export const Route = createFileRoute("/case-studies/$slug")({
 });
 
 function CaseStudyDetail() {
-  const { item } = Route.useLoaderData();
+  const { item } = Route.useLoaderData() as { item: (typeof import("@/content/caseStudies").caseStudies)[number] };
   return (
     <>
       <Section className="pt-12 md:pt-20 pb-10">
