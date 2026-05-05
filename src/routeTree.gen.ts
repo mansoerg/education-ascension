@@ -9,38 +9,246 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CaseStudiesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/methodology': typeof MethodologyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/team': typeof TeamRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/methodology': typeof MethodologyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/team': typeof TeamRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/methodology': typeof MethodologyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/team': typeof TeamRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/insights'
+    | '/library'
+    | '/methodology'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/case-studies/$slug'
+    | '/insights/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/insights'
+    | '/library'
+    | '/methodology'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/case-studies/$slug'
+    | '/insights/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/insights'
+    | '/library'
+    | '/methodology'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/case-studies/$slug'
+    | '/insights/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
+  LibraryRoute: typeof LibraryRoute
+  MethodologyRoute: typeof MethodologyRoute
+  ResourcesRoute: typeof ResourcesRoute
+  ServicesRoute: typeof ServicesRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +256,58 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/case-studies/$slug': {
+      id: '/case-studies/$slug'
+      path: '/$slug'
+      fullPath: '/case-studies/$slug'
+      preLoaderRoute: typeof CaseStudiesSlugRouteImport
+      parentRoute: typeof CaseStudiesRoute
+    }
   }
 }
 
+interface CaseStudiesRouteChildren {
+  CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
+}
+
+const CaseStudiesRouteChildren: CaseStudiesRouteChildren = {
+  CaseStudiesSlugRoute: CaseStudiesSlugRoute,
+}
+
+const CaseStudiesRouteWithChildren = CaseStudiesRoute._addFileChildren(
+  CaseStudiesRouteChildren,
+)
+
+interface InsightsRouteChildren {
+  InsightsSlugRoute: typeof InsightsSlugRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsSlugRoute: InsightsSlugRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CaseStudiesRoute: CaseStudiesRouteWithChildren,
+  ContactRoute: ContactRoute,
+  InsightsRoute: InsightsRouteWithChildren,
+  LibraryRoute: LibraryRoute,
+  MethodologyRoute: MethodologyRoute,
+  ResourcesRoute: ResourcesRoute,
+  ServicesRoute: ServicesRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
